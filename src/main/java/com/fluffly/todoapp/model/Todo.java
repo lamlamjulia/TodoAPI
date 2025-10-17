@@ -1,9 +1,6 @@
 package com.fluffly.todoapp.model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
 import lombok.Data;
 import org.antlr.v4.runtime.misc.NotNull;
@@ -11,6 +8,7 @@ import org.hibernate.annotations.NotFound;
 
 @Entity
 @Data
+@Table(name = "todo")
 public class Todo {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

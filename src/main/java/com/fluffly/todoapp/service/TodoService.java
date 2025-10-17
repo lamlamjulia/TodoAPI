@@ -25,9 +25,15 @@ public class TodoService {
     {
         return repo.findById(id).orElse(null);
     }
-    public Todo updateTodo(int id, Todo updatedTodo)
+    public Todo updateTodo(Long id, Todo updatedTodo)
     {
-        return updatedTodo;
+        Todo current = getTodoById(id);
+        current.setId(updatedTodo.getId());
+        current.setTaskName(updatedTodo.getTaskName());
+        current.setDeadline(updatedTodo.getDeadline());
+        current.setDone(updatedTodo.isDone());
+        current.setDescription(updatedTodo.getDescription());
+        return repo.save(current);
     }
     public void deleteTodo(Long id)
     {
