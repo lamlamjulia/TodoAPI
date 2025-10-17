@@ -1,31 +1,36 @@
 package com.fluffly.todoapp.service;
 
 import com.fluffly.todoapp.model.Todo;
+import com.fluffly.todoapp.repository.TodoRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+
 @Service
 public class TodoService {
-    private List<Todo> todoList;
+    private TodoRepository repo;
+    public TodoService(TodoRepository repo) {
+        this.repo = repo;
+    }
     public List<Todo> getAllTodos()
     {
-        return null;
+        return repo.findAll();
     }
     public Todo createTodo(Todo todo)
     {
-        return todo;
+        return repo.save(todo);
     }
-    public Todo getTodoById(int id)
+    public Todo getTodoById(Long id)
     {
-        return todoList.get(id);
+        return repo.findById(id).orElse(null);
     }
     public Todo updateTodo(int id, Todo updatedTodo)
     {
         return updatedTodo;
     }
-    public void deleteTodo(int id)
+    public void deleteTodo(Long id)
     {
-        todoList.remove(id);
+        repo.deleteById(id);
     }
 }
