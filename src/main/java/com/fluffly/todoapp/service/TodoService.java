@@ -1,5 +1,6 @@
 package com.fluffly.todoapp.service;
 
+import com.fluffly.todoapp.exception.ResourceNotFoundException;
 import com.fluffly.todoapp.model.Todo;
 import com.fluffly.todoapp.repository.TodoRepository;
 import org.springframework.stereotype.Service;
@@ -23,7 +24,7 @@ public class TodoService {
     }
     public Todo getTodoById(Long id)
     {
-        return repo.findById(id).orElse(null);
+        return repo.findById(id).orElseThrow(() -> new ResourceNotFoundException("Todo with id " + id + " not found!"));
     }
     public Todo updateTodo(Long id, Todo updatedTodo)
     {

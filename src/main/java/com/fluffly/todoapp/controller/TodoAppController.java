@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+@CrossOrigin(origins = "http://localhost:5173")
 @RestController
 @RequestMapping(path = "/homepage")
 public class TodoAppController {
@@ -18,7 +19,7 @@ public class TodoAppController {
     public List<Todo> getAllTodos() {
         return service.getAllTodos();
     }
-    @GetMapping("/id")
+    @GetMapping("/{id}")
     public Todo getTodoById(@PathVariable Long id) {
         return service.getTodoById(id);
     }
